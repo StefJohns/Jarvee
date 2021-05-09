@@ -36,7 +36,7 @@ const BAD_CODE_RULES = [
 // Confirm Answer Function
 let answerConfirm = context(() => {
     intent('$(A yes|Yes|no|No)', p => {
-        return p.resolve(p.A.value);
+        return p.resolve(p.A.value.toLowerCase());
     });
 });
 
@@ -53,7 +53,7 @@ intent('(What can you tell me|Do you know anything) about $(TOPIC C++ Classes)?'
     p.play({ command: 'jarveeResponse', responseText: jFollowUp});
     p.play(jFollowUp)
     let answer = await p.then(answerConfirm);
-    if (answer == "yes" || answer == "Yes") {
+    if (answer == "yes") {
         jResponse = 'There are ' + CLASS_RULE_DESCRIPTIONS.length + 'rules available';
         p.play({ command: 'jarveeResponse', responseText: jResponse});
         p.play(jResponse);
@@ -82,7 +82,7 @@ let whichRule = context(() => {
         p.play({ command: 'jarveeResponse', responseText: jResponse});
         p.play(jResponse);
         let answer = await p.then(answerConfirm);
-        if (answer == "yes" || answer =="Yes"){
+        if (answer == "yes"){
             let page_url = CORE_GUIDELINES_URL + URL_PAGE[p.C_RULE.value - 1];
             p.play({command: 'showWebPage', page_url});
         jResponse = 'Rule number '+ p.C_RULE.value +': '+ CLASS_RULE_DESCRIPTIONS[p.C_RULE.value - 1];
