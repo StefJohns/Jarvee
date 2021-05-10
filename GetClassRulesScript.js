@@ -40,7 +40,7 @@ const CLASS_RULE_REASONS = [
 
 const CLASS_NOTES = [];
 
-const CLASS_DEFINITION = [];
+const CLASS_DEFINITION = "A class is a user-defined type, for which a programmer can define the representation, operations, and interfaces. Class hierarchies are used to organize related classes into hierarchical structures.";
 
 const CLASS_ENFORCEMENT = [];
 
@@ -83,14 +83,27 @@ let jResponse;
 let jFollowUp;
 
 intent('(What can you tell me|Do you know anything) about $(TOPIC C++ Classes|Classes)?', async p => {
-    jResponse = 'I can tell you quite a bit about' + p.TOPIC.value;
+    jResponse = 'I can tell you quite a bit about ' + p.TOPIC.value;
     p.play({ command: 'jarveeResponse', responseText: jResponse});
     p.play(jResponse);
+    
+    // definition
+    jFollowUp = 'Would you like to hear the definition?';
+    p.play({ command: 'jarveeResponse', responseText: jFollowUp});
+    p.play(jFollowUp)
+    let answerOne = await p.then(answerConfirm);
+    if (answerOne == "yes"){
+        jResponse = CLASS_DEFINITION;
+        p.play({ command: 'jarveeResponse', responseText: jResponse});
+        p.play(jResponse);
+    } else {
+        p.play('Okay');
+        // num rules
     jFollowUp = 'Would you like to know the number of rules available?';
     p.play({ command: 'jarveeResponse', responseText: jFollowUp});
     p.play(jFollowUp)
-    let answer = await p.then(answerConfirm);
-    if (answer == "yes") {
+    let answerTwo = await p.then(answerConfirm);
+    if (answerTwo == "yes") {
         jResponse = 'There are ' + CLASS_RULE_DESCRIPTIONS.length + 'rules available';
         p.play({ command: 'jarveeResponse', responseText: jResponse});
         p.play(jResponse);
@@ -104,7 +117,7 @@ intent('(What can you tell me|Do you know anything) about $(TOPIC C++ Classes|Cl
         p.play(jResponse);
         p.then(whichRule);
     }
-    
+    }
 });
 intent('(Thanks|Thank you)', p => {
                 p.play({ command: 'jarveeResponse', responseText: 'My pleasure!'});
@@ -127,10 +140,10 @@ let whichRule = context(() => {
         jResponse = 'The reason for this is because ' + CLASS_RULE_REASONS[p.C_RULE.value - 1];
             p.play({ command: 'jarveeResponse', responseText: jResponse});
             p.play(jResponse);
-            p.play('Here is a good example of this.');
-            p.play({ command: 'showCodeExample', badCode: GOOD_CODE_RULES[p.C_RULE.value - 1] });
             p.play('Here is a bad example of this.');
             p.play({ command: 'showCodeExample', badCode: BAD_CODE_RULES[p.C_RULE.value - 1] });
+            p.play('Here is a good example of this.');
+            p.play({ command: 'showCodeExample', badCode: GOOD_CODE_RULES[p.C_RULE.value - 1] });
         } else {
             jResponse = 'Which rule would you like then?';
             p.play(jResponse);
