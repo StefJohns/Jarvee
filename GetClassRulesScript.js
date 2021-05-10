@@ -40,6 +40,8 @@ const CLASS_RULE_REASONS = [
 
 const CLASS_NOTES = [];
 
+const CLASS_DEFINITION = [];
+
 const CLASS_ENFORCEMENT = [];
 
 const GOOD_CODE_RULES = [
