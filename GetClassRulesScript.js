@@ -38,6 +38,10 @@ const CLASS_RULE_REASONS = [
     'regular types are easier to understand and reason about than types that are not regular (irregularities requires extra effort to understand and use).'
 ];
 
+const CLASS_NOTES = [];
+
+const CLASS_ENFORCEMENT = [];
+
 const GOOD_CODE_RULES = [
     'void draw\(Point from, Point to\);     // Better',
     'struct Pair {  string name; int volume; };     // the members can vary independently',
@@ -121,6 +125,8 @@ let whichRule = context(() => {
         jResponse = 'The reason for this is because ' + CLASS_RULE_REASONS[p.C_RULE.value - 1];
             p.play({ command: 'jarveeResponse', responseText: jResponse});
             p.play(jResponse);
+            p.play('Here is a good example of this.');
+            p.play({ command: 'showCodeExample', badCode: GOOD_CODE_RULES[p.C_RULE.value - 1] });
             p.play('Here is a bad example of this.');
             p.play({ command: 'showCodeExample', badCode: BAD_CODE_RULES[p.C_RULE.value - 1] });
         } else {
