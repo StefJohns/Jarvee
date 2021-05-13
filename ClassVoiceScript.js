@@ -81,55 +81,13 @@ const Enforcements = [
 ];
 
 onCreateProject(() => {
-    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class Over Struct_|Encapsulation|Concrete Type_|Regular Type_|";
+    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class Over Struct_|Encapsulation|Concrete Type_|Regular Type_";
+    project.CLASSRULENUMS = "1|2|3|4|5|6|7|8|9|10";
 });
 
 // Mutable Variables
 let jResponse;
 let jFollowUp;
-
-// Functions and Contexts
-// Confirm Answer Functions
-let answerConfirm = context(() => {
-    intent('$(Answer yes|no|)', jarvee => {
-        return jarvee.resolve(jarvee.Answer.value.toLowerCase());
-    });
-});
-
-// Get Specific Rule
-let whichRule = context(() => {
-    intent('(I want rule number|Rule number|Rule) $(CRULE 1|2|3|4|5|6|7|8|9|10)', async p => {
-        jResponse = 'Making sure I heard correctly, you\'d like rule number ' + p.C_RULE.value + ' right?';
-        p.play({ command: 'jarveeResponse', responseText: jResponse});
-        p.play(jResponse);
-        let answer = await p.then(answerConfirm);
-        if (answer == "yes"){
-            let page_url = Core_Guidelines_URL + URL_Pages[p.C_RULE.value - 1];
-            p.play({command: 'showWebPage', page_url});
-        jResponse = 'Rule number '+ p.C_RULE.value +': '+ Rule_Descriptions[p.C_RULE.value - 1];
-            p.play(jResponse);
-        jResponse = 'The reason for this is because ' + Rule_Reasons[p.C_RULE.value - 1];
-            p.play({ command: 'jarveeResponse', responseText: jResponse});
-            p.play(jResponse);
-            p.play('Here is a bad example of this.');
-            //p.play({ command: 'showCodeExample', badCode: BAD_CODE_RULES[p.C_RULE.value - 1] });
-            //p.play('Here is a good example of this.');
-            //p.play({ command: 'showCodeExample', badCode: GOOD_CODE_RULES[p.C_RULE.value - 1] });
-            p.resolve();
-        } else {
-            jResponse = 'Which rule would you like then?';
-            p.play(jResponse);
-            p.then(whichRule);
-        }
-    })
-});
-
-// Get Topic
-let getTopic = context(() => {
-    intent('(I would like information on|Do you have information on|Can you tell me about|) $(CATEGORY p:CLASSCATEGORIES)', jarvee => {
-        return jarvee.resolve(jarvee.CATEGORY.value);
-    });
-});
 
 // Play Definition
 function playDefinition(jarvee){
@@ -151,10 +109,6 @@ function numRules(jarvee) {
 // Info On C++ Classes
 intent('(I would like information on|Do you have information on|Can you tell me about ) $(T Classes)?', async jarvee => {
     
-    jResponse = `Information on ${jarvee.T.value}`;
-    jarvee.play({command: 'jarveeResponse', responseText: jResponse});
-    jarvee.play(jResponse);
-    
     // Definition ? yes : no ; playDefinition
     jFollowUp = 'Would you like to hear the definition first?';
     jarvee.play({command: 'jarveeResponse', responseText: jFollowUp});
@@ -166,33 +120,54 @@ intent('(I would like information on|Do you have information on|Can you tell me 
             jResponse = definitionResponse;
             jarvee.play({command: 'jarveeResponse', responseText: jResponse});
             jarvee.play(jResponse);
-        } else { jarvee.resolve(); }
+        } else { jarvee.play('Okay!'); }
     } else {
         jarvee.play('Okay!');
-        jarvee.resolve();
     }
     
     // Get Number of Rules ? yes : no ; numRules
-    jFollowUp = 'Would you like to know the number of rules there are for Classes?';
+    jFollowUp = 'Would you like to know the number of rules there are for classes?';
     jarvee.play({command: 'jarveeResponse', responseText: jFollowUp});
     jarvee.play(jFollowUp);
     let rulesAnswer = await jarvee.then(answerConfirm);
-    if (rulesAnswer == "yes") {
+    
+    if (rulesAnswer === 'yes') 
+    {
         let rulesResponse = await numRules(jarvee);
-        if (rulesResponse) {
+        if (rulesResponse) 
+        {
             jResponse = rulesResponse;
             jarvee.play({command: 'jarveeResponse', responseText: jResponse});
             jarvee.play(jResponse);
-            
-            jFollowUp = 'Which rule would you like?';
-            jarvee.play({ command: 'jarveeResponse', responseText: jFollowUp});
-            jarvee.play(jFollowUp);
-            jarvee.then(whichRule);
-        } else { jarvee.resolve(); }
+        } else { 
+            jarvee.play('Okay!'); 
+        }
+        
     } else {
         jarvee.play('Okay!');
-        jarvee.resolve();
     }
+    
+    // Pick Rule ?
+    //jFollowUp = 'Would you like to pick a rule?';
+    //jarvee.play({command: 'jarveeResponse', responseText: jFollowUp });
+    //jarvee.play(jFollowUp);
+    //let pickRule = await jarvee.then(answerConfirm);
+    
+    //if (pickRule === 'yes') 
+    //{
+    //    let pickResponse = await jarvee.then(getRuleNumber);
+    //    if (pickResponse) 
+    //    {
+    //        let page_url = Core_Guidelines_URL + URL_Pages[pickResponse - 1];
+    //        jarvee.play({command: 'showWebPage', page_url});
+    //        jResponse = 'Rule number '+ pickResponse +': '+ Rule_Descriptions[pickResponse - 1];
+    //        jarvee.play(jResponse);
+    //    } else {
+    //        jarvee.play('Okay!');
+    //    }
+    //} else {
+    //    jarvee.play('Okay!');
+    //} 
     
     // Get What The User Wants From Classes
     jResponse = 'What topic would you like to know?';
@@ -200,8 +175,9 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     jarvee.play(jResponse);
     let topicAnswer = await jarvee.then(getTopic);
     jResponse = "Let me grab information on " + topicAnswer + " for you.";
+    jarvee.play(jResponse);
     
-    if (topicAnswer == "Organization"){
+    if (topicAnswer === "Organization"){
         let page_url = Core_Guidelines_URL + URL_Pages[0];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[0];
@@ -210,4 +186,26 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);        
     }
+});
+
+// Contexts
+// Confirm Answer Context
+let answerConfirm = context(() => {
+    intent('$(Answer yes|no|)', jarvee => {
+        return jarvee.resolve(jarvee.Answer.value.toLowerCase());
+    });
+});
+
+// Get Specific Rule
+let getRuleNumber = context(() => {
+    intent('(Rule Number| Number| Rule|) $(NUMBER)', jarvee => { 
+        return jarvee.resolve(jarvee.NUMBER.number);
+    });
+});
+
+// Get Topic
+let getTopic = context(() => {
+    intent('(I would like information on|Do you have information on|Can you tell me about|) $(CATEGORY p:CLASSCATEGORIES)', jarvee => {
+        return jarvee.resolve(jarvee.CATEGORY.value);
+    });
 });
