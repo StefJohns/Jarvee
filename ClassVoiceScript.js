@@ -80,15 +80,25 @@ const Enforcements = [
     ''
 ];
 
+onCreateProject(() => {
+    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class Over Struct_|Encapsulation|Concrete Type_|Regular Type_|";
+});
+
 // Mutable Variables
 let jResponse;
 let jFollowUp;
 
-// Functions
+// Functions and Contexts
 // Confirm Answer Functions
 let answerConfirm = context(() => {
     intent('$(Answer yes|no|)', jarvee => {
         return jarvee.resolve(jarvee.Answer.value.toLowerCase());
+    });
+});
+
+let getTopic = context(() => {
+    intent('(I would like information on|Do you have information on|Can you tell me about|) $(CATEGORY p:CLASSCATEGORIES)', jarvee => {
+        return jarvee.resolve(jarvee.CATEGORY.value);
     });
 });
 
@@ -112,7 +122,7 @@ function numRules(jarvee) {
 // Info On C++ Classes
 intent('(I would like information on|Do you have information on|Can you tell me about ) $(T Classes)?', async jarvee => {
     
-    jResponse = 'Information on ${jarvee.T.value}';
+    jResponse = `Information on ${jarvee.T.value}`;
     jarvee.play({command: 'jarveeResponse', responseText: jResponse});
     jarvee.play(jResponse);
     
@@ -130,6 +140,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         } else { jarvee.resolve(); }
     } else {
         jarvee.play('Okay!');
+        jarvee.resolve();
     }
     
     // Get Number of Rules ? yes : no ; numRules
@@ -138,11 +149,31 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     jarvee.play(jFollowUp);
     let rulesAnswer = await jarvee.then(answerConfirm);
     if (rulesAnswer == "yes") {
-        jarvee.then(numRules);
+        let rulesResponse = await numRules(jarvee);
+        if (rulesResponse) {
+            jResponse = rulesResponse;
+            jarvee.play({command: 'jarveeResponse', responseText: jResponse});
+            jarvee.play(jResponse);
+        } else { jarvee.resolve(); }
     } else {
         jarvee.play('Okay!');
+        jarvee.resolve();
     }
     
-    // Which 
+    // Get What The User Wants From Classes
+    jResponse = 'What topic would you like to know?';
+    jarvee.play({command: 'jarveeResponse', responseText: jResponse});
+    jarvee.play(jResponse);
+    let topicAnswer = await jarvee.then(getTopic);
+    jResponse = "Let me grab information on " + topicAnswer + " for you.";
     
+    if (topicAnswer == "Organization"){
+        let page_url = Core_Guidelines_URL + URL_Pages[0];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[0];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[0];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);        
+    }
 });
