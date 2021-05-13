@@ -38,11 +38,39 @@ const CLASS_RULE_REASONS = [
     'regular types are easier to understand and reason about than types that are not regular (irregularities requires extra effort to understand and use).'
 ];
 
-const CLASS_NOTES = [];
+const CLASS_NOTES = [
+    'A simple class without virtual functions implies no space or time overhead. From a language perspective class and struct differ only in the default visibility of their members',
+    'An invariant is a logical condition for the members of an object that a constructor must establish for the public member functions to assume. After the invariant is established (typically by a constructor) every member function can be called for the object. An invariant can be stated informally (e.g., in a comment) or more formally using Expects. If all data members can vary independently of each other, no invariant is possible. If a class has any private data, a user cannot completely initialize an object without the use of a constructor. Hence, the class definer will provide a constructor and must specify its meaning. This effectively means the definer need to define an invariant',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+];
 
 const CLASS_DEFINITION = "A class is a user-defined type, for which a programmer can define the representation, operations, and interfaces. Class hierarchies are used to organize related classes into hierarchical structures.";
 
-const CLASS_ENFORCEMENT = [];
+const CLASS_ENFORCEMENT = [
+    'Probably impossible. Maybe a heuristic looking for data items used together is possible.',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+];
 
 const GOOD_CODE_RULES = [
     'void draw\(Point from, Point to\);     // Better',
@@ -72,7 +100,7 @@ const BAD_CODE_RULES = [
 
 // Confirm Answer Function
 let answerConfirm = context(() => {
-    intent('$(A yes|Yes|no|No)', p => {
+    intent('$(A yes|no)', p => {
         return p.resolve(p.A.value.toLowerCase());
     });
 });
@@ -83,7 +111,7 @@ let jResponse;
 let jFollowUp;
 
 intent('(What can you tell me|Do you know anything) about $(TOPIC C++ Classes|Classes)?', async p => {
-    jResponse = 'I can tell you quite a bit about ' + p.TOPIC.value;
+    jResponse = 'I can tell you quite a bit about ' + '${p.TOPIC.value}';
     p.play({ command: 'jarveeResponse', responseText: jResponse});
     p.play(jResponse);
     
@@ -149,6 +177,6 @@ let whichRule = context(() => {
             p.play(jResponse);
             p.then(whichRule);
         }
-    });
+    })
 });
 
