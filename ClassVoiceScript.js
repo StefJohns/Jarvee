@@ -96,6 +96,35 @@ let answerConfirm = context(() => {
     });
 });
 
+// Get Specific Rule
+let whichRule = context(() => {
+    intent('(I want rule number|Rule number|Rule) $(CRULE 1|2|3|4|5|6|7|8|9|10)', async p => {
+        jResponse = 'Making sure I heard correctly, you\'d like rule number ' + p.C_RULE.value + ' right?';
+        p.play({ command: 'jarveeResponse', responseText: jResponse});
+        p.play(jResponse);
+        let answer = await p.then(answerConfirm);
+        if (answer == "yes"){
+            let page_url = Core_Guidelines_URL + URL_Pages[p.C_RULE.value - 1];
+            p.play({command: 'showWebPage', page_url});
+        jResponse = 'Rule number '+ p.C_RULE.value +': '+ Rule_Descriptions[p.C_RULE.value - 1];
+            p.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[p.C_RULE.value - 1];
+            p.play({ command: 'jarveeResponse', responseText: jResponse});
+            p.play(jResponse);
+            p.play('Here is a bad example of this.');
+            //p.play({ command: 'showCodeExample', badCode: BAD_CODE_RULES[p.C_RULE.value - 1] });
+            //p.play('Here is a good example of this.');
+            //p.play({ command: 'showCodeExample', badCode: GOOD_CODE_RULES[p.C_RULE.value - 1] });
+            p.resolve();
+        } else {
+            jResponse = 'Which rule would you like then?';
+            p.play(jResponse);
+            p.then(whichRule);
+        }
+    })
+});
+
+// Get Topic
 let getTopic = context(() => {
     intent('(I would like information on|Do you have information on|Can you tell me about|) $(CATEGORY p:CLASSCATEGORIES)', jarvee => {
         return jarvee.resolve(jarvee.CATEGORY.value);
@@ -154,6 +183,11 @@ intent('(I would like information on|Do you have information on|Can you tell me 
             jResponse = rulesResponse;
             jarvee.play({command: 'jarveeResponse', responseText: jResponse});
             jarvee.play(jResponse);
+            
+            jFollowUp = 'Which rule would you like?';
+            jarvee.play({ command: 'jarveeResponse', responseText: jFollowUp});
+            jarvee.play(jFollowUp);
+            jarvee.then(whichRule);
         } else { jarvee.resolve(); }
     } else {
         jarvee.play('Okay!');
