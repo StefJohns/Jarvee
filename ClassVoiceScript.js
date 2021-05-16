@@ -54,14 +54,12 @@ const Notes = [
 // Class Enforcement
 const Enforcements = [
     'Probably impossible. Maybe a heuristic looking for data items used together is possible.',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
+    'Look for structs with all data private and classes with public members.',
+    'No Enforcement Suggested',
+    'Look for non-virtual member functions that do not touch data members directly. The snag is that many member functions that do not need to touch data members directly do. Ignore virtual functions. Ignore functions that are part of an overlod set out of which at least one function access private members. Ignore functions returning \'this\'',
+    'Flag global functions taking argument types from a single namespace.',
+    'Flag classes declared with struct if there is a private or protected member.',
+    'Flag protected data. Flag mixtures of public and private data.'
 ];
 
 onCreateProject(() => {
@@ -145,9 +143,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[0];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[0];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
-        jarvee.play(jResponse);  
+        jarvee.play(jResponse);
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[0];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Structs
@@ -156,9 +159,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[1];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[1];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[1];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Interfaces
@@ -167,9 +175,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[2];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[2];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'There is no suggested way to enforce this.';
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Members
@@ -178,9 +191,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[3];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[3];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[3];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Helper Functions
@@ -189,9 +207,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[4];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[4];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[4];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Standalone
@@ -200,9 +223,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[5];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[5];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[5];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Class Over Struct
@@ -211,9 +239,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[6];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[6];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[6];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
     
     // Encapsulation
@@ -222,9 +255,14 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[7];
         jarvee.play(jResponse);
+        
         jResponse = 'The reason for this is because ' + Rule_Reasons[7];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
+        
+        jResponse = 'To enforce this, do the folowing: ' + Enforcements[7];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
     }
 });
 
