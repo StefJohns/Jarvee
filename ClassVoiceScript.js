@@ -11,9 +11,7 @@ const URL_Pages = [
     'Rc-helper',
     'Rc-standalone',
     'Rc-class',
-    'Rc-private',
-    'Rc-concrete',
-    'Rc-regular'
+    'Rc-private'
 ];
 
 // Class Definition
@@ -28,9 +26,7 @@ const Rule_Descriptions = [
     'Place helper functions in the same namespace as the class they support',
     'Don\'t define a class or enum and declare a variable of its type in the same statement',
     'Use class rather than struct if any member is non-public',
-    'Minimize exposure of members',
-    'Prefer concrete types over class hierarchies',
-    'Make concrete types regular'
+    'Minimize exposure of members'
 ];
 
 // Class Rule Reasons
@@ -41,28 +37,18 @@ const Rule_Reasons = [
     'a helper function is a function (usually supplied by the writer of a class) that does not need direct access to the representation of the class, yet is seen as part of the useful interface to the class. Placing them in the same namespace as the class makes their relationship to the class obvious and allows them to be found by argument dependent lookup.',
     'mixing a type definition and the definition of another entity in the same declaration is confusing and unnecessary.',
     'of readability. To make it clear that something is being hidden/abstracted. This is a useful convention.',
-    'of encapsulation. Information hiding. Minimize the chance of unintended access. This simplifies maintenance.',
-    'a concrete type is fundamentally simpler than a hierarchy: easier to design, easier to implement, easier to use, easier to reason about, smaller, and faster. You need a reason (use cases) for using a hierarchy.',
-    'regular types are easier to understand and reason about than types that are not regular (irregularities requires extra effort to understand and use).'
+    'of encapsulation. Information hiding. Minimize the chance of unintended access. This simplifies maintenance.'
 ];
 
 // Class Rule Notes
 const Notes = [
     'A simple class without virtual functions implies no space or time overhead. From a language perspective class and struct differ only in the default visibility of their members',
     'An invariant is a logical condition for the members of an object that a constructor must establish for the public member functions to assume. After the invariant is established (typically by a constructor) every member function can be called for the object. An invariant can be stated informally (e.g., in a comment) or more formally using Expects. If all data members can vary independently of each other, no invariant is possible. If a class has any private data, a user cannot completely initialize an object without the use of a constructor. Hence, the class definer will provide a constructor and must specify its meaning. This effectively means the definer need to define an invariant',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
+    'Using a class in this way to represent the distinction between interface and implementation is of course not the only way. For example, we can use a set of declarations of freestanding functions in a namespace, an abstract base class, or a function template with concepts to represent an interface. The most important issue is to explicitly distinguish between an interface and its implementation ?details.? Ideally, and typically, an interface is far more stable than its implementation(s).',
+    'This rule becomes even better if C++ gets \?uniform function call\?.',
+    'This is especially important for overloaded operators.',
+    'No Notes Provided',
+    'Prefer to place the interface first in a class. If the set of direct users of a set of variables cannot be easily determined, the type or usage of that set cannot be (easily) changed/improved. For public and protected data, that\?s usually the case. Protected data is a bad idea. Prefer the order public members before protected members before private members.'
 ];
 
 // Class Enforcement
@@ -75,14 +61,12 @@ const Enforcements = [
     '',
     '',
     '',
-    '',
-    '',
     ''
 ];
 
 onCreateProject(() => {
-    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation|Concrete Type_|Regular Type_";
-    project.CLASSRULENUMS = "1|2|3|4|5|6|7|8|9|10";
+    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation";
+    project.CLASSRULENUMS = "1|2|3|4|5|6|7|8";
 });
 
 // Mutable Variables
@@ -107,7 +91,7 @@ function numRules(jarvee) {
 
 // Initial Intents
 // Info On C++ Classes
-intent('(I would like information on|Do you have information on|Can you tell me about ) $(T Classes)?', async jarvee => {
+intent('(I would like information on|Do you have information on|Can you tell me about|) $(T Classes)?', async jarvee => {
     
     // Definition ? yes : no ; playDefinition
     jFollowUp = 'Would you like to hear the definition first?';
@@ -146,28 +130,6 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     } else {
         jarvee.play('Okay!');
     }
-    
-    // Pick Rule ?
-    //jFollowUp = 'Would you like to pick a rule?';
-    //jarvee.play({command: 'jarveeResponse', responseText: jFollowUp });
-    //jarvee.play(jFollowUp);
-    //let pickRule = await jarvee.then(answerConfirm);
-    
-    //if (pickRule === 'yes') 
-    //{
-    //    let pickResponse = await jarvee.then(getRuleNumber);
-    //    if (pickResponse) 
-    //    {
-    //        let page_url = Core_Guidelines_URL + URL_Pages[pickResponse - 1];
-    //        jarvee.play({command: 'showWebPage', page_url});
-    //        jResponse = 'Rule number '+ pickResponse +': '+ Rule_Descriptions[pickResponse - 1];
-    //        jarvee.play(jResponse);
-    //    } else {
-    //        jarvee.play('Okay!');
-    //    }
-    //} else {
-    //    jarvee.play('Okay!');
-    //} 
     
     // Get What The User Wants From Classes
     jResponse = 'What topic would you like to know?';
@@ -261,28 +223,6 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jResponse = Rule_Descriptions[7];
         jarvee.play(jResponse);
         jResponse = 'The reason for this is because ' + Rule_Reasons[7];
-        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
-        jarvee.play(jResponse);  
-    }
-    
-    // Concrete Types
-    if (topicAnswer === "Concrete Type" | topicAnswer === "Concrete Types"){
-        let page_url = Core_Guidelines_URL + URL_Pages[8];
-        jarvee.play({command: 'showWebPage', page_url});
-        jResponse = Rule_Descriptions[8];
-        jarvee.play(jResponse);
-        jResponse = 'The reason for this is because ' + Rule_Reasons[8];
-        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
-        jarvee.play(jResponse);  
-    }
-    
-    // Regular Types
-    if (topicAnswer === "Regular Type" | topicAnswer === "Regular Types"){
-        let page_url = Core_Guidelines_URL + URL_Pages[9];
-        jarvee.play({command: 'showWebPage', page_url});
-        jResponse = Rule_Descriptions[9];
-        jarvee.play(jResponse);
-        jResponse = 'The reason for this is because ' + Rule_Reasons[9];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
     }
