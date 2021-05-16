@@ -177,6 +177,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     jResponse = "Let me grab information on " + topicAnswer + " for you.";
     jarvee.play(jResponse);
     
+    // Organization
     if (topicAnswer === "Organization"){
         let page_url = Core_Guidelines_URL + URL_Pages[0];
         jarvee.play({command: 'showWebPage', page_url});
@@ -184,7 +185,51 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play(jResponse);
         jResponse = 'The reason for this is because ' + Rule_Reasons[0];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
-        jarvee.play(jResponse);        
+        jarvee.play(jResponse);  
+    }
+    
+    // Structs
+    if (topicAnswer === "Struct" | topicAnswer === "Structs"){
+        let page_url = Core_Guidelines_URL + URL_Pages[1];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[1];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[1];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Interfaces
+    if (topicAnswer === "Interface" | topicAnswer === "Interfaces"){
+        let page_url = Core_Guidelines_URL + URL_Pages[2];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[2];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[2];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Members
+    if (topicAnswer === "Member" | topicAnswer === "Members"){
+        let page_url = Core_Guidelines_URL + URL_Pages[3];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[3];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[3];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Helper Functions
+    if (topicAnswer === "Helper Function" | topicAnswer === "Helper Functions"){
+        let page_url = Core_Guidelines_URL + URL_Pages[4];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[4];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[4];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
     }
 });
 
