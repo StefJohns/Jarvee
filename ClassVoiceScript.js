@@ -81,7 +81,7 @@ const Enforcements = [
 ];
 
 onCreateProject(() => {
-    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class Over Struct_|Encapsulation|Concrete Type_|Regular Type_";
+    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation|Concrete Type_|Regular Type_";
     project.CLASSRULENUMS = "1|2|3|4|5|6|7|8|9|10";
 });
 
@@ -228,6 +228,61 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jResponse = Rule_Descriptions[4];
         jarvee.play(jResponse);
         jResponse = 'The reason for this is because ' + Rule_Reasons[4];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Standalone
+    if (topicAnswer === "Standalone"){
+        let page_url = Core_Guidelines_URL + URL_Pages[5];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[5];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[5];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Class Over Struct
+    if (topicAnswer === "Class Over Struct" | topicAnswer === "Classes Over Structs"){
+        let page_url = Core_Guidelines_URL + URL_Pages[6];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[6];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[6];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Encapsulation
+    if (topicAnswer === "Encapsulation"){
+        let page_url = Core_Guidelines_URL + URL_Pages[7];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[7];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[7];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Concrete Types
+    if (topicAnswer === "Concrete Type" | topicAnswer === "Concrete Types"){
+        let page_url = Core_Guidelines_URL + URL_Pages[8];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[8];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[8];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);  
+    }
+    
+    // Regular Types
+    if (topicAnswer === "Regular Type" | topicAnswer === "Regular Types"){
+        let page_url = Core_Guidelines_URL + URL_Pages[9];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[9];
+        jarvee.play(jResponse);
+        jResponse = 'The reason for this is because ' + Rule_Reasons[9];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);  
     }
