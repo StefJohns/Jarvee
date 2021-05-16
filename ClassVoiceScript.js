@@ -266,6 +266,13 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
 });
 
+// Show Web Page Intent
+intent('Show me the web (site|page)', 'Can you pull up the web (site|page)', '(Show|Bring Up|) the web site for $(T Classes|)', 'Show me the guidelines for $(T Classes|)', async jarvee => {
+    jarvee.play('Sure thing. Pulling up the guidelines now', 'Absolutely! Showing the webpage now.')
+    let page_url = Core_Guidelines_URL + 'main';
+    jarvee.play({command: 'showWebPage', page_url});
+});
+
 // Contexts
 // Confirm Answer Context
 let answerConfirm = context(() => {
