@@ -1,4 +1,9 @@
 // Define Constants & Arrays
+onCreateProject(() => {
+    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation";
+    project.CLASSRULENUMS = "1|2|3|4|5|6|7|8";
+});
+
 // URL
 const Core_Guidelines_URL = 'https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#';
 
@@ -61,11 +66,6 @@ const Enforcements = [
     'Flag classes declared with struct if there is a private or protected member.',
     'Flag protected data. Flag mixtures of public and private data.'
 ];
-
-onCreateProject(() => {
-    project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation";
-    project.CLASSRULENUMS = "1|2|3|4|5|6|7|8";
-});
 
 // Mutable Variables
 let jResponse;
