@@ -139,6 +139,85 @@ intent('(I would like information on|Do you have information on|Can you tell me 
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
     }
+    
+     // set
+    if (topicAnswer === 'set' || topicAnswer === 'sets'){
+        let page_url = Core_Guidelines_URL + URL_Pages[1];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[1];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[1];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
+    
+     // class
+    if (topicAnswer === 'class' || topicAnswer === 'plain'){
+        let page_url = Core_Guidelines_URL + URL_Pages[2];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[2];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[2];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
+    // operation
+    if (topicAnswer === 'operation' || topicAnswer === 'operations'){
+        let page_url = Core_Guidelines_URL + URL_Pages[3];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[3];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[3];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
+    // caps
+    if (topicAnswer === 'caps' || topicAnswer === 'capital letter' || topicAnswer === 'capital letters'){
+        let page_url = Core_Guidelines_URL + URL_Pages[4];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[4];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[4];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
+     // unnamed
+    if (topicAnswer === 'unnamed'){
+        let page_url = Core_Guidelines_URL + URL_Pages[5];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[5];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[5];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
+    // underlying
+    if (topicAnswer === 'underlying type' || topicAnswer === 'underlying types'){
+        let page_url = Core_Guidelines_URL + URL_Pages[6];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[6];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[6];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
+    // values
+    if (topicAnswer === 'values' || topicAnswer === 'value'){
+        let page_url = Core_Guidelines_URL + URL_Pages[7];
+        jarvee.play({command: 'showWebPage', page_url});
+        jResponse = Rule_Descriptions[7];
+        jarvee.play(jResponse);
+
+        jResponse = 'The reason for this is because ' + Rule_Reasons[7];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
+        jarvee.play(jResponse);
+    }
 });
 
 // Show Web Page Intent
@@ -154,20 +233,23 @@ intent('Show me the web(site|page) for enum $(ENUMCAT p:ENUMSCATEGORIES)', 'Can 
     let keyword = jarvee.ENUMCAT.value;
     let page_url;
     switch (keyword) {
-        case "macros" : page_url = Core_Guidelines_URL + URL_Pages[0]; break;
-        case "macro": page_url = Core_Guidelines_URL + URL_Pages[0]; break;
-        case "sets" : page_url = Core_Guidelines_URL + URL_Pages[1]; break;
-        case "set": page_url = Core_Guidelines_URL + URL_Pages[1]; break;
-        case "class" : page_url = Core_Guidelines_URL + URL_Pages[2]; break;
-        case "operations" : page_url = Core_Guidelines_URL + URL_Pages[3]; break;
-        case "operation": page_url = Core_Guidelines_URL + URL_Pages[3]; break;
-        case "caps" : page_url = Core_Guidelines_URL + URL_Pages[4]; break;
-        case "capital letters": page_url = Core_Guidelines_URL + URL_Pages[4]; break;
-        case "unnamed" : page_url = Core_Guidelines_URL + URL_Pages[5]; break;
-        case "underlying types": page_url = Core_Guidelines_URL + URL_Pages[6]; break;
-        case "underlying type": page_url = Core_Guidelines_URL + URL_Pages[6]; break;
-        case "values" : page_url = Core_Guidelines_URL + URL_Pages[7]; break;
-        case "value": page_url = Core_Guidelines_URL + URL_Pages[7]; break;
+            // macros keyword does not register with jarvee, unable to find cause.
+            case "macros" : page_url = Core_Guidelines_URL + URL_Pages[0]; break;
+            // macro keyword does register with jarvee
+            case "macro": page_url = Core_Guidelines_URL + URL_Pages[0]; break;
+            case "sets" : page_url = Core_Guidelines_URL + URL_Pages[1]; break;
+            case "set": page_url = Core_Guidelines_URL + URL_Pages[1]; break;
+            case "class" : page_url = Core_Guidelines_URL + URL_Pages[2]; break;
+            case "plain" : page_url = Core_Guidelines_URL + URL_Pages[2]; break;
+            case "operations" : page_url = Core_Guidelines_URL + URL_Pages[3]; break;
+            case "operation": page_url = Core_Guidelines_URL + URL_Pages[3]; break;
+            case "caps" : page_url = Core_Guidelines_URL + URL_Pages[4]; break;
+            case "capital letters": page_url = Core_Guidelines_URL + URL_Pages[4]; break;
+            case "unnamed" : page_url = Core_Guidelines_URL + URL_Pages[5]; break;
+            case "underlying types": page_url = Core_Guidelines_URL + URL_Pages[6]; break;
+            case "underlying type": page_url = Core_Guidelines_URL + URL_Pages[6]; break;
+            case "values" : page_url = Core_Guidelines_URL + URL_Pages[7]; break;
+            case "value": page_url = Core_Guidelines_URL + URL_Pages[7]; break;
     }
     jarvee.play({command: 'showWebPage', page_url});
 });

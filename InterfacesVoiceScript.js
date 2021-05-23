@@ -1,6 +1,6 @@
 // Define Constants & Arrays
 onCreateProject(() => {
-    project.INTERFACESCATEGORIES = "explicit_|global_|singleton_|typed|preconditions|expects funtion|postcondition_|ensures function|concepts|exception_|raw pointer_|null pointer_|array_|global initialization|number of argument_|unrelated parameter_|adjacent parameter_|abstract class_|A B I|Pimpl|encapulate|encapsulation";
+    project.INTERFACESCATEGORIES = "explicit_|global_|singleton_|typed|preconditions|expects funtion|postcondition_|ensures function|concepts|exception_|raw pointer_|null pointer_|array_|global initialization|number of argument_|argument_|unrelated parameter_|adjacent parameter_|abstract class_|A B I|Pimpl|encapulate|encapsulation";
 });
 
 // URL
@@ -336,7 +336,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
     
     // number of arguments
-    if (topicAnswer === 'number of argument' || topicAnswer === 'number of argruments'){
+    if (topicAnswer === 'number of argument' || topicAnswer === 'number of argruments' || topicAnswer === 'argument' || topicAnswer === 'argruments'){
         let page_url = Core_Guidelines_URL + URL_Pages[14];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[14];
@@ -426,15 +426,22 @@ intent('Show me the web (site|page) for $(INTERFACECAT p:INTERFACESCATEGORIES) i
     if (keyword == 'null pointer' || keyword == 'null pointers') {
         page_url = Core_Guidelines_URL + 'Ri-nullptr';
     }
-    else if (keyword == 'number of arguments') {
+    else if (keyword == 'number of arguments' || keyword == 'arguments') {
         page_url = Core_Guidelines_URL + 'Ri-nargs';
     }
     else if (keyword == 'a b i') {
         page_url = Core_Guidelines_URL + 'Ri-abi';
     }
+    else if (keyword == 'unrelated parameters' || keyword == 'unrelated parameter' || keyword == 'adjacent parameters' || keyword == 'adjacent parameter') {
+        page_url = Core_Guidelines_URL + 'Ri-unrelated';
+    }
+    else if (keyword == 'glabal initialization') {
+        page_url = Core_Guidelines_URL + 'Ri-global-init';
+    }
     else {
         page_url = Core_Guidelines_URL + 'Ri-' + keyword;
     }
+    
     jarvee.play({command: 'showWebPage', page_url});
 });
 

@@ -12,7 +12,7 @@ const URL_Pages = [
 ];
 
 // Definition
-const Concrete_Definition = 'One ideal for a class is to be a regular type. That means roughly \"behaves like an int\". A concrete type is the simplest kind of class. A value of regular type can be copied and the result of a copy is an independent object with the same value as the original. Concrete classes without assignment and equality can be defined, tut they are rare. The C++ built-in types are regular, and so are the standard-library classes, such as string, vector, and map. Concrete types are also often referred to as value types to distinguish them from types used as part of a hierarchy.';
+const ConcreteClass_Definition = 'One ideal for a class is to be a regular type. That means roughly \"behaves like an int\". A concrete type is the simplest kind of class. A value of regular type can be copied and the result of a copy is an independent object with the same value as the original. Concrete classes without assignment and equality can be defined, tut they are rare. The C++ built-in types are regular, and so are the standard-library classes, such as string, vector, and map. Concrete types are also often referred to as value types to distinguish them from types used as part of a hierarchy.';
 
 // Rule Descriptions
 const Rule_Descriptions = [
