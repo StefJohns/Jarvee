@@ -1,10 +1,14 @@
 onCreateProject(() => {
     project.RESOURCECATEGORIES = "";
+    project.ADCATEGORIES = "";
+    project.SMARTPOINTERCATEGORIES = "";
 });
 
 const Core_Guidelines_URL = 'https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#';
 
 const URL_Pages = [];
+const AD_URL_Pages = [];
+const SmartPointer_URL_Pages = [];
 
 const Resource_Management_Definition = "";
 

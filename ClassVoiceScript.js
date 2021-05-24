@@ -1,7 +1,6 @@
 // Define Constants & Arrays
 onCreateProject(() => {
     project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation";
-    project.CLASSRULENUMS = "1|2|3|4|5|6|7|8";
 });
 
 // URL
@@ -22,6 +21,7 @@ const URL_Pages = [
 // Class Definition
 const Class_Definition = "A class is a user-defined type, for which a programmer can define the representation, operations, and interfaces. Class hierarchies are used to organize related classes into hierarchical structures.";
 
+
 // Class Rule Descriptions
 const Rule_Descriptions = [
     'Organize related data into structures (structs or classes)',
@@ -33,6 +33,7 @@ const Rule_Descriptions = [
     'Use class rather than struct if any member is non-public',
     'Minimize exposure of members'
 ];
+
 
 // Class Rule Reasons
 const Rule_Reasons = [
