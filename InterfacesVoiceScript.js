@@ -3,9 +3,6 @@ onCreateProject(() => {
     project.INTERFACESCATEGORIES = "explicit_|global_|singleton_|typed|preconditions|expects funtion|postcondition_|ensures function|concepts|exception_|raw pointer_|null pointer_|array_|global initialization|number of argument_|argument_|unrelated parameter_|adjacent parameter_|abstract class_|A B I|Pimpl|encapulate|encapsulation";
 });
 
-// URL
-const Core_Guidelines_URL = 'https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#';
-
 // URL Pages Array
 const URL_Pages = [
     'Ri-explicit',
@@ -165,7 +162,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // explicit
     if (topicAnswer === 'explicit' || topicAnswer === 'explicits'){
-        let page_url = Core_Guidelines_URL + URL_Pages[0];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[0];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[0];
         jarvee.play(jResponse);
@@ -181,7 +178,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // globals
     if (topicAnswer === 'global' || topicAnswer === 'globals'){
-        let page_url = Core_Guidelines_URL + URL_Pages[1];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[1];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[1];
         jarvee.play(jResponse);
@@ -193,7 +190,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // singletons
     if (topicAnswer === 'singleton' || topicAnswer === 'singletons'){
-        let page_url = Core_Guidelines_URL + URL_Pages[2];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[2];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[2];
         jarvee.play(jResponse);
@@ -205,7 +202,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // typed
     if (topicAnswer === 'typed'){
-        let page_url = Core_Guidelines_URL + URL_Pages[3];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[3];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[3];
         jarvee.play(jResponse);
@@ -217,7 +214,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // preconditions
     if (topicAnswer === 'precondtions'){
-        let page_url = Core_Guidelines_URL + URL_Pages[4];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[4];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[4];
         jarvee.play(jResponse);
@@ -229,7 +226,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // expects function
     if (topicAnswer === 'expects function'){
-        let page_url = Core_Guidelines_URL + URL_Pages[5];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[5];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[5];
         jarvee.play(jResponse);
@@ -241,7 +238,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // postconditions
     if (topicAnswer === 'postcondition' || topicAnswer === 'postconditions'){
-        let page_url = Core_Guidelines_URL + URL_Pages[6];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[6];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[6];
         jarvee.play(jResponse);
@@ -253,7 +250,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // ensures function
     if (topicAnswer === 'ensures function'){
-        let page_url = Core_Guidelines_URL + URL_Pages[7];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[7];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[7];
         jarvee.play(jResponse);
@@ -265,7 +262,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // concepts
     if (topicAnswer === 'concepts'){
-        let page_url = Core_Guidelines_URL + URL_Pages[8];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[8];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[8];
         jarvee.play(jResponse);
@@ -277,7 +274,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // exceptions
     if (topicAnswer === 'exception' || topicAnswer === 'exceptions'){
-        let page_url = Core_Guidelines_URL + URL_Pages[9];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[9];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[9];
         jarvee.play(jResponse);
@@ -289,7 +286,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // raw pointers
     if (topicAnswer === 'raw pointer' || topicAnswer === 'raw pointers'){
-        let page_url = Core_Guidelines_URL + URL_Pages[10];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[10];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[10];
         jarvee.play(jResponse);
@@ -301,7 +298,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // nullptr
     if (topicAnswer === 'null pointer'  || topicAnswer === 'null pointers'){
-        let page_url = Core_Guidelines_URL + URL_Pages[11];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[11];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[11];
         jarvee.play(jResponse);
@@ -313,7 +310,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // arrays
     if (topicAnswer === 'array' || topicAnswer === 'arrays'){
-        let page_url = Core_Guidelines_URL + URL_Pages[12];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[12];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[12];
         jarvee.play(jResponse);
@@ -325,7 +322,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // global initialization
     if (topicAnswer === 'global initialization'){
-        let page_url = Core_Guidelines_URL + URL_Pages[13];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[13];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[13];
         jarvee.play(jResponse);
@@ -337,7 +334,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // number of arguments
     if (topicAnswer === 'number of argument' || topicAnswer === 'number of argruments' || topicAnswer === 'argument' || topicAnswer === 'argruments'){
-        let page_url = Core_Guidelines_URL + URL_Pages[14];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[14];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[14];
         jarvee.play(jResponse);
@@ -349,7 +346,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // unrelated and adjacent parameters
     if (topicAnswer === 'unrelated parameter' || topicAnswer === 'unrelated parameters' || topicAnswer === 'adjacent parameter' || topicAnswer === 'adjacent parameters'){
-        let page_url = Core_Guidelines_URL + URL_Pages[15];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[15];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[15];
         jarvee.play(jResponse);
@@ -361,7 +358,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // abstract class
     if (topicAnswer === 'abstract class' || topicAnswer === 'abstract classes'){
-        let page_url = Core_Guidelines_URL + URL_Pages[16];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[16];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[16];
         jarvee.play(jResponse);
@@ -373,7 +370,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // ABI
     if (topicAnswer === 'a b i'){
-        let page_url = Core_Guidelines_URL + URL_Pages[17];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[17];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[17];
         jarvee.play(jResponse);
@@ -385,7 +382,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Pimpl
     if (topicAnswer === 'pimpl'){
-        let page_url = Core_Guidelines_URL + URL_Pages[18];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[18];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[18];
         jarvee.play(jResponse);
@@ -397,7 +394,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // encapsulation
     if (topicAnswer === 'encapulate' || topicAnswer === 'encapsulation'){
-        let page_url = Core_Guidelines_URL + URL_Pages[19];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[19];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[19];
         jarvee.play(jResponse);
@@ -413,33 +410,33 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
 // Show Web Page Intent
 intent('Show me the main web (site|page) for $(I Interfaces)', 'Can you pull up the main web (site|page) for $(I Interfaces)', '(Show|Bring Up|) the main web site for $(I Interfaces)', 'Show me the guidelines for $(I Interfaces)', async jarvee => {
-    jarvee.play('Sure thing. Pulling up the guidelines now', 'Absolutely! Showing the webpage now.')
-    let page_url = Core_Guidelines_URL + 'S-interfaces';
+    jarvee.play('Sure thing. Pulling up the guidelines for Interfaces now')
+    let page_url = project.COREGUIDELINESURL + 'S-interfaces';
     jarvee.play({command: 'showWebPage', page_url});
 });
 
 // Get Specific Page Intent
-intent('Show me the web (site|page) for $(INTERFACECAT p:INTERFACESCATEGORIES) in Interfaces', 'Can you pull up the web (site|page) for $(INTERFACECAT p:INTERFACESCATEGORIES) in Interfaces', '(Show|Bring Up|) the web site for $(INTERFACECAT p:INTERFACESCATEGORIES) in Interfaces', async jarvee => {
-    jarvee.play(`Sure. Pulling up the page on ${jarvee.INTERFACECAT.value.toLowerCase()} now`);
+intent('Show me the web (site|page) for interface  $(INTERFACECAT p:INTERFACESCATEGORIES)', 'Can you pull up the web (site|page) for interface $(INTERFACECAT p:INTERFACESCATEGORIES)', '(Show|Bring Up|) the web site for interface $(INTERFACECAT p:INTERFACESCATEGORIES)', 'Search for interface $(INTERFACECAT p:INTERFACESCATEGORIES)', async jarvee => {
+    jarvee.play(`Sure. Pulling up the guideline on ${jarvee.INTERFACECAT.value.toLowerCase()} now`, `Searching for ${jarvee.INTERFACECAT.value.toLowerCase()}...`);
     let keyword = jarvee.INTERFACECAT.value;
     let page_url;
     if (keyword == 'null pointer' || keyword == 'null pointers') {
-        page_url = Core_Guidelines_URL + 'Ri-nullptr';
+        page_url = project.COREGUIDELINESURL + 'Ri-nullptr';
     }
     else if (keyword == 'number of arguments' || keyword == 'arguments') {
-        page_url = Core_Guidelines_URL + 'Ri-nargs';
+        page_url = project.COREGUIDELINESURL + 'Ri-nargs';
     }
     else if (keyword == 'a b i') {
-        page_url = Core_Guidelines_URL + 'Ri-abi';
+        page_url = project.COREGUIDELINESURL + 'Ri-abi';
     }
     else if (keyword == 'unrelated parameters' || keyword == 'unrelated parameter' || keyword == 'adjacent parameters' || keyword == 'adjacent parameter') {
-        page_url = Core_Guidelines_URL + 'Ri-unrelated';
+        page_url = project.COREGUIDELINESURL + 'Ri-unrelated';
     }
     else if (keyword == 'glabal initialization') {
-        page_url = Core_Guidelines_URL + 'Ri-global-init';
+        page_url = project.COREGUIDELINESURL + 'Ri-global-init';
     }
     else {
-        page_url = Core_Guidelines_URL + 'Ri-' + keyword;
+        page_url = project.COREGUIDELINESURL + 'Ri-' + keyword;
     }
     
     jarvee.play({command: 'showWebPage', page_url});

@@ -3,9 +3,6 @@ onCreateProject(() => {
     project.CLASSCATEGORIES = "Organization|Struct_|Interface_|Member_|Helper Function_|Standalone_|Class_ Over Struct_|Encapsulation";
 });
 
-// URL
-const Core_Guidelines_URL = 'https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#';
-
 // URL Pages Array
 const URL_Pages = [
     'Rc-org',
@@ -140,7 +137,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Organization
     if (topicAnswer === "organization"){
-        let page_url = Core_Guidelines_URL + URL_Pages[0];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[0];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[0];
         jarvee.play(jResponse);
@@ -156,7 +153,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Structs
     if (topicAnswer === "struct" || topicAnswer === "structs"){
-        let page_url = Core_Guidelines_URL + URL_Pages[1];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[1];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[1];
         jarvee.play(jResponse);
@@ -172,7 +169,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Interfaces
     if (topicAnswer === "interface" || topicAnswer === "interfaces"){
-        let page_url = Core_Guidelines_URL + URL_Pages[2];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[2];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[2];
         jarvee.play(jResponse);
@@ -188,7 +185,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Members
     if (topicAnswer === "member" || topicAnswer === "members"){
-        let page_url = Core_Guidelines_URL + URL_Pages[3];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[3];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[3];
         jarvee.play(jResponse);
@@ -204,7 +201,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Helper Functions
     if (topicAnswer === "helper function" || topicAnswer === "helper functions"){
-        let page_url = Core_Guidelines_URL + URL_Pages[4];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[4];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[4];
         jarvee.play(jResponse);
@@ -220,7 +217,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Standalone
     if (topicAnswer === "standalone"){
-        let page_url = Core_Guidelines_URL + URL_Pages[5];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[5];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[5];
         jarvee.play(jResponse);
@@ -236,7 +233,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Class Over Struct
     if (topicAnswer === "class over struct" || topicAnswer === "classes over structs"){
-        let page_url = Core_Guidelines_URL + URL_Pages[6];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[6];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[6];
         jarvee.play(jResponse);
@@ -252,7 +249,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
     // Encapsulation
     if (topicAnswer === "encapsulation"){
-        let page_url = Core_Guidelines_URL + URL_Pages[7];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[7];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[7];
         jarvee.play(jResponse);
@@ -270,7 +267,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 // Show Web Page Intent
 intent('Show me the web (site|page)', 'Can you pull up the web (site|page)', '(Show|Bring Up|) the web site for $(C Classes|)', 'Show me the guidelines for $(C Classes)', async jarvee => {
     jarvee.play('Sure thing. Pulling up the guidelines now', 'Absolutely! Showing the webpage now.')
-    let page_url = Core_Guidelines_URL + 'S-class';
+    let page_url = project.COREGUIDELINESURL + 'S-class';
     jarvee.play({command: 'showWebPage', page_url});
 });
 
