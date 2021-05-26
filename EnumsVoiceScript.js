@@ -3,9 +3,6 @@ onCreateProject(() => {
     project.ENUMSCATEGORIES = "set_|macro_|class|plain|operation_|caps|caital letter_|unnamed|underlying type_|value_";
 });
 
-// URL
-const Core_Guidelines_URL = 'https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#';
-
 // URL Pages Array
 const URL_Pages = [
     'Renum-macro',
@@ -130,7 +127,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
      // macro
     if (topicAnswer === 'macro' || topicAnswer === 'macros'){
-        let page_url = Core_Guidelines_URL + URL_Pages[0];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[0];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[0];
         jarvee.play(jResponse);
@@ -142,7 +139,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
      // set
     if (topicAnswer === 'set' || topicAnswer === 'sets'){
-        let page_url = Core_Guidelines_URL + URL_Pages[1];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[1];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[1];
         jarvee.play(jResponse);
@@ -154,7 +151,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     
      // class
     if (topicAnswer === 'class' || topicAnswer === 'plain'){
-        let page_url = Core_Guidelines_URL + URL_Pages[2];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[2];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[2];
         jarvee.play(jResponse);
@@ -165,7 +162,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
     // operation
     if (topicAnswer === 'operation' || topicAnswer === 'operations'){
-        let page_url = Core_Guidelines_URL + URL_Pages[3];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[3];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[3];
         jarvee.play(jResponse);
@@ -176,7 +173,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
     // caps
     if (topicAnswer === 'caps' || topicAnswer === 'capital letter' || topicAnswer === 'capital letters'){
-        let page_url = Core_Guidelines_URL + URL_Pages[4];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[4];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[4];
         jarvee.play(jResponse);
@@ -187,7 +184,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
      // unnamed
     if (topicAnswer === 'unnamed'){
-        let page_url = Core_Guidelines_URL + URL_Pages[5];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[5];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[5];
         jarvee.play(jResponse);
@@ -198,7 +195,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
     // underlying
     if (topicAnswer === 'underlying type' || topicAnswer === 'underlying types'){
-        let page_url = Core_Guidelines_URL + URL_Pages[6];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[6];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[6];
         jarvee.play(jResponse);
@@ -209,7 +206,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
     // values
     if (topicAnswer === 'values' || topicAnswer === 'value'){
-        let page_url = Core_Guidelines_URL + URL_Pages[7];
+        let page_url = project.COREGUIDELINESURL + URL_Pages[7];
         jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[7];
         jarvee.play(jResponse);
@@ -223,33 +220,33 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 // Show Web Page Intent
 intent('(Show|Bring Up|) the main website for $(E Enums|Enumerations|Enumerators)', 'Show me the guidelines for $(E Enums|Enumerations|Enumerators)', async jarvee => {
     jarvee.play('Sure thing. Pulling up the guidelines now', 'Absolutely! Showing the webpage now.')
-    let page_url = Core_Guidelines_URL + 'S-enum';
+    let page_url = project.COREGUIDELINESURL + 'S-enum';
     jarvee.play({command: 'showWebPage', page_url});
 });
 
 // Get Specific Page Intent
-intent('Show me the web(site|page) for enum $(ENUMCAT p:ENUMSCATEGORIES)', 'Can you pull up the web(site|page) for enum $(ENUMCAT p:ENUMSCATEGORIES)', '(Show|Bring Up|) the website for enum $(ENUMCAT p:ENUMSCATEGORIES)', async jarvee => {
-    jarvee.play(`Sure. Pulling up the page on ${jarvee.ENUMCAT.value} now`);
+intent('Show me the web(site|page) for enum $(ENUMCAT p:ENUMSCATEGORIES)', 'Can you pull up the web(site|page) for enum $(ENUMCAT p:ENUMSCATEGORIES)', '(Show|Bring Up|) the website for enum $(ENUMCAT p:ENUMSCATEGORIES)','Search for enum $(ENUMCAT p:ENUMSCATEGORIES)', async jarvee => {
+    jarvee.play(`Sure. Pulling up the guideline on ${jarvee.ENUMCAT.value} now`, `Searching for ${jarvee.ENUMCAT.value.toLowerCase()}...`);
     let keyword = jarvee.ENUMCAT.value;
     let page_url;
     switch (keyword) {
             // macros keyword does not register with jarvee, unable to find cause.
-            case "macros" : page_url = Core_Guidelines_URL + URL_Pages[0]; break;
+            case "macros" : page_url = project.COREGUIDELINESURL + URL_Pages[0]; break;
             // macro keyword does register with jarvee
-            case "macro": page_url = Core_Guidelines_URL + URL_Pages[0]; break;
-            case "sets" : page_url = Core_Guidelines_URL + URL_Pages[1]; break;
-            case "set": page_url = Core_Guidelines_URL + URL_Pages[1]; break;
-            case "class" : page_url = Core_Guidelines_URL + URL_Pages[2]; break;
-            case "plain" : page_url = Core_Guidelines_URL + URL_Pages[2]; break;
-            case "operations" : page_url = Core_Guidelines_URL + URL_Pages[3]; break;
-            case "operation": page_url = Core_Guidelines_URL + URL_Pages[3]; break;
-            case "caps" : page_url = Core_Guidelines_URL + URL_Pages[4]; break;
-            case "capital letters": page_url = Core_Guidelines_URL + URL_Pages[4]; break;
-            case "unnamed" : page_url = Core_Guidelines_URL + URL_Pages[5]; break;
-            case "underlying types": page_url = Core_Guidelines_URL + URL_Pages[6]; break;
-            case "underlying type": page_url = Core_Guidelines_URL + URL_Pages[6]; break;
-            case "values" : page_url = Core_Guidelines_URL + URL_Pages[7]; break;
-            case "value": page_url = Core_Guidelines_URL + URL_Pages[7]; break;
+            case "macro": page_url = project.COREGUIDELINESURL + URL_Pages[0]; break;
+            case "sets" : page_url = project.COREGUIDELINESURL + URL_Pages[1]; break;
+            case "set": page_url = project.COREGUIDELINESURL + URL_Pages[1]; break;
+            case "class" : page_url = project.COREGUIDELINESURL + URL_Pages[2]; break;
+            case "plain" : page_url = project.COREGUIDELINESURL + URL_Pages[2]; break;
+            case "operations" : page_url = project.COREGUIDELINESURL + URL_Pages[3]; break;
+            case "operation": page_url = project.COREGUIDELINESURL + URL_Pages[3]; break;
+            case "caps" : page_url = project.COREGUIDELINESURL + URL_Pages[4]; break;
+            case "capital letters": page_url = project.COREGUIDELINESURL + URL_Pages[4]; break;
+            case "unnamed" : page_url = project.COREGUIDELINESURL + URL_Pages[5]; break;
+            case "underlying types": page_url = project.COREGUIDELINESURL + URL_Pages[6]; break;
+            case "underlying type": page_url = project.COREGUIDELINESURL + URL_Pages[6]; break;
+            case "values" : page_url = project.COREGUIDELINESURL + URL_Pages[7]; break;
+            case "value": page_url = project.COREGUIDELINESURL + URL_Pages[7]; break;
     }
     jarvee.play({command: 'showWebPage', page_url});
 });

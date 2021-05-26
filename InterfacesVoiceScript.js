@@ -3,9 +3,6 @@ onCreateProject(() => {
     project.INTERFACESCATEGORIES = "explicit_|global_|singleton_|typed|preconditions|expects funtion|postcondition_|ensures function|concepts|exception_|raw pointer_|null pointer_|array_|global initialization|number of argument_|argument_|unrelated parameter_|adjacent parameter_|abstract class_|A B I|Pimpl|encapulate|encapsulation";
 });
 
-// URL
-const Core_Guidelines_URL = 'https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#';
-
 // URL Pages Array
 const URL_Pages = [
     'Ri-explicit',
@@ -115,8 +112,7 @@ function numRules(jarvee) {
 
 // Initial Intents
 // Info On C++ Interfaces
-intent('(I would like information on|Do you have information on|Can you tell me about|) $(T Interfaces)?', async jarvee => {
-
+intent('(I would like information on|Do you have information on|Can you tell me about|) $(I Interfaces)?', async jarvee => {
     // Definition ? yes : no ; playDefinition
     jFollowUp = 'Would you like to hear the definition first?';
     jarvee.play({command: 'jarveeResponse', responseText: jFollowUp});
@@ -156,7 +152,7 @@ intent('(I would like information on|Do you have information on|Can you tell me 
     }
 
     // Get What The User Wants From Interfaces
-    jResponse = 'What would you like to know?';
+    jResponse = 'Go ahead and tell me what information about interfaces I can grab for you!';
     jarvee.play({command: 'jarveeResponse', responseText: jResponse});
     jarvee.play(jResponse);
     let topicAnswer = await jarvee.then(getTopic);
@@ -165,14 +161,15 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // explicit
     if (topicAnswer === 'explicit' || topicAnswer === 'explicits'){
-        let page_url = Core_Guidelines_URL + URL_Pages[0];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[0];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[0];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[0];
+        jarvee.play({command: 'showWebPage', page_url});
 
         //jResponse = 'To enforce this, do the following: ' + Enforcements[0];
         //jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
@@ -181,230 +178,249 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
     // globals
     if (topicAnswer === 'global' || topicAnswer === 'globals'){
-        let page_url = Core_Guidelines_URL + URL_Pages[1];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[1];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[1];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[1];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // singletons
     if (topicAnswer === 'singleton' || topicAnswer === 'singletons'){
-        let page_url = Core_Guidelines_URL + URL_Pages[2];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[2];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[2];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[2];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // typed
     if (topicAnswer === 'typed'){
-        let page_url = Core_Guidelines_URL + URL_Pages[3];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[3];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[3];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[3];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // preconditions
-    if (topicAnswer === 'precondtions'){
-        let page_url = Core_Guidelines_URL + URL_Pages[4];
-        jarvee.play({command: 'showWebPage', page_url});
+    if (topicAnswer === 'precondtions'){        
         jResponse = Rule_Descriptions[4];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[4];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[4];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // expects function
     if (topicAnswer === 'expects function'){
-        let page_url = Core_Guidelines_URL + URL_Pages[5];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[5];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[5];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[5];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // postconditions
     if (topicAnswer === 'postcondition' || topicAnswer === 'postconditions'){
-        let page_url = Core_Guidelines_URL + URL_Pages[6];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[6];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[6];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[6];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // ensures function
     if (topicAnswer === 'ensures function'){
-        let page_url = Core_Guidelines_URL + URL_Pages[7];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[7];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[7];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[7];
+        jarvee.play({command: 'showWebPage', page_url});
     }
     
     // concepts
     if (topicAnswer === 'concepts'){
-        let page_url = Core_Guidelines_URL + URL_Pages[8];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[8];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[8];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[8];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // exceptions
     if (topicAnswer === 'exception' || topicAnswer === 'exceptions'){
-        let page_url = Core_Guidelines_URL + URL_Pages[9];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[9];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[9];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[9];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // raw pointers
     if (topicAnswer === 'raw pointer' || topicAnswer === 'raw pointers'){
-        let page_url = Core_Guidelines_URL + URL_Pages[10];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[10];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[10];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[10];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // nullptr
     if (topicAnswer === 'null pointer'  || topicAnswer === 'null pointers'){
-        let page_url = Core_Guidelines_URL + URL_Pages[11];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[11];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[11];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[11];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // arrays
     if (topicAnswer === 'array' || topicAnswer === 'arrays'){
-        let page_url = Core_Guidelines_URL + URL_Pages[12];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[12];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[12];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[12];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // global initialization
     if (topicAnswer === 'global initialization'){
-        let page_url = Core_Guidelines_URL + URL_Pages[13];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[13];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[13];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[13];
+        jarvee.play({command: 'showWebPage', page_url});
     }
     
     // number of arguments
     if (topicAnswer === 'number of argument' || topicAnswer === 'number of argruments' || topicAnswer === 'argument' || topicAnswer === 'argruments'){
-        let page_url = Core_Guidelines_URL + URL_Pages[14];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[14];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[14];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[14];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // unrelated and adjacent parameters
     if (topicAnswer === 'unrelated parameter' || topicAnswer === 'unrelated parameters' || topicAnswer === 'adjacent parameter' || topicAnswer === 'adjacent parameters'){
-        let page_url = Core_Guidelines_URL + URL_Pages[15];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[15];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[15];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[15];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
     // abstract class
     if (topicAnswer === 'abstract class' || topicAnswer === 'abstract classes'){
-        let page_url = Core_Guidelines_URL + URL_Pages[16];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[16];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[16];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[16];
+        jarvee.play({command: 'showWebPage', page_url});
     }
     
     // ABI
     if (topicAnswer === 'a b i'){
-        let page_url = Core_Guidelines_URL + URL_Pages[17];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[17];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[17];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[17];
+        jarvee.play({command: 'showWebPage', page_url});
     }
     
     // Pimpl
     if (topicAnswer === 'pimpl'){
-        let page_url = Core_Guidelines_URL + URL_Pages[18];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[18];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[18];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[18];
+        jarvee.play({command: 'showWebPage', page_url});
     }
     
     // encapsulation
     if (topicAnswer === 'encapulate' || topicAnswer === 'encapsulation'){
-        let page_url = Core_Guidelines_URL + URL_Pages[19];
-        jarvee.play({command: 'showWebPage', page_url});
         jResponse = Rule_Descriptions[19];
+        jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
 
         jResponse = 'The reason for this is because ' + Rule_Reasons[19];
         jarvee.play({ command: 'jarveeResponse', responseText: jResponse});
         jarvee.play(jResponse);
+        let page_url = project.COREGUIDELINESURL + URL_Pages[19];
+        jarvee.play({command: 'showWebPage', page_url});
     }
 
 
@@ -413,33 +429,33 @@ intent('(I would like information on|Do you have information on|Can you tell me 
 
 // Show Web Page Intent
 intent('Show me the main web (site|page) for $(I Interfaces)', 'Can you pull up the main web (site|page) for $(I Interfaces)', '(Show|Bring Up|) the main web site for $(I Interfaces)', 'Show me the guidelines for $(I Interfaces)', async jarvee => {
-    jarvee.play('Sure thing. Pulling up the guidelines now', 'Absolutely! Showing the webpage now.')
-    let page_url = Core_Guidelines_URL + 'S-interfaces';
+    jarvee.play('Sure thing. Pulling up the guidelines for Interfaces now')
+    let page_url = project.COREGUIDELINESURL + 'S-interfaces';
     jarvee.play({command: 'showWebPage', page_url});
 });
 
 // Get Specific Page Intent
-intent('Show me the web (site|page) for $(INTERFACECAT p:INTERFACESCATEGORIES) in Interfaces', 'Can you pull up the web (site|page) for $(INTERFACECAT p:INTERFACESCATEGORIES) in Interfaces', '(Show|Bring Up|) the web site for $(INTERFACECAT p:INTERFACESCATEGORIES) in Interfaces', async jarvee => {
-    jarvee.play(`Sure. Pulling up the page on ${jarvee.INTERFACECAT.value.toLowerCase()} now`);
+intent('Show me the web (site|page) for interface  $(INTERFACECAT p:INTERFACESCATEGORIES)', 'Can you pull up the web (site|page) for interface $(INTERFACECAT p:INTERFACESCATEGORIES)', '(Show|Bring Up|) the web site for interface $(INTERFACECAT p:INTERFACESCATEGORIES)', 'Search for interface $(INTERFACECAT p:INTERFACESCATEGORIES)', async jarvee => {
+    jarvee.play(`Sure. Pulling up the guideline on ${jarvee.INTERFACECAT.value.toLowerCase()} now`, `Searching for ${jarvee.INTERFACECAT.value.toLowerCase()}...`);
     let keyword = jarvee.INTERFACECAT.value;
     let page_url;
     if (keyword == 'null pointer' || keyword == 'null pointers') {
-        page_url = Core_Guidelines_URL + 'Ri-nullptr';
+        page_url = project.COREGUIDELINESURL + 'Ri-nullptr';
     }
     else if (keyword == 'number of arguments' || keyword == 'arguments') {
-        page_url = Core_Guidelines_URL + 'Ri-nargs';
+        page_url = project.COREGUIDELINESURL + 'Ri-nargs';
     }
     else if (keyword == 'a b i') {
-        page_url = Core_Guidelines_URL + 'Ri-abi';
+        page_url = project.COREGUIDELINESURL + 'Ri-abi';
     }
     else if (keyword == 'unrelated parameters' || keyword == 'unrelated parameter' || keyword == 'adjacent parameters' || keyword == 'adjacent parameter') {
-        page_url = Core_Guidelines_URL + 'Ri-unrelated';
+        page_url = project.COREGUIDELINESURL + 'Ri-unrelated';
     }
     else if (keyword == 'glabal initialization') {
-        page_url = Core_Guidelines_URL + 'Ri-global-init';
+        page_url = project.COREGUIDELINESURL + 'Ri-global-init';
     }
     else {
-        page_url = Core_Guidelines_URL + 'Ri-' + keyword;
+        page_url = project.COREGUIDELINESURL + 'Ri-' + keyword;
     }
     
     jarvee.play({command: 'showWebPage', page_url});
