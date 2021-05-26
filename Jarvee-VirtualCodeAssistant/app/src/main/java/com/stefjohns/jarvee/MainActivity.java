@@ -2,7 +2,8 @@ package com.stefjohns.jarvee;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.ColorStateList;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -12,18 +13,16 @@ import com.alan.alansdk.AlanCallback;
 import com.alan.alansdk.AlanConfig;
 import com.alan.alansdk.button.AlanButton;
 import com.alan.alansdk.events.EventCommand;
-import com.alan.alansdk.events.EventText;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Console;
-
 public class MainActivity extends AppCompatActivity {
 
-    WebView webView;
-    TextView jarveeText;
+    private WebView jarveeWebView;
+    private TextView jarveeTextView;
+    private int shortAnimationDuration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
         alan_button.initWithConfig(config);
 
         // WebView
-        webView = findViewById(R.id.rulesWebView);
-        webView.loadUrl("http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#c-classes-and-class-hierarchies");
-        webView.setVisibility(View.GONE);
+        jarveeWebView = findViewById(R.id.jarveeWebView);
+        jarveeWebView.setVisibility(View.GONE);
 
         // Jarvee Text View
-        jarveeText = findViewById(R.id.jarveeTextView);
-        jarveeText.setText("Hello! Press the blue button in the top left, to ask me a question. Or, you could just say 'Hey Alan'");
+        jarveeTextView = findViewById(R.id.jarveeTextView);
+        jarveeTextView.setText("Hello! Press the blue button in the top left, to ask me a question. You can say something like, 'Show me the guidelines'");
+
+        shortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         // Alan Command Handler
         AlanCallback webCallback = new AlanCallback() {
@@ -75,33 +75,8 @@ public class MainActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    jarveeText.setVisibility(View.GONE);
-                    webView.setVisibility(View.VISIBLE);
-                    webView.loadUrl(dataToDisplay);
-                }
-
-                // If command = show bad code
-                if (commandData.equals("showCodeExample")) {
-                    try {
-                        dataToDisplay = commandObject.getString("badCode");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    webView.setVisibility(View.GONE);
-                    jarveeText.setVisibility(View.VISIBLE);
-                    jarveeText.setText(dataToDisplay);
-                }
-
-                // If command = show Good Code
-                if (commandData.equals("showCodeExample")) {
-                    try {
-                        dataToDisplay = commandObject.getString("goodCode");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    webView.setVisibility(View.GONE);
-                    jarveeText.setVisibility(View.VISIBLE);
-                    jarveeText.setText(dataToDisplay);
+                    crossfadeWebView();
+                    jarveeWebView.loadUrl(dataToDisplay);
                 }
 
                 if(commandData.equals("jarveeResponse")) {
@@ -110,12 +85,50 @@ public class MainActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    webView.setVisibility(View.GONE);
-                    jarveeText.setVisibility(View.VISIBLE);
-                    jarveeText.setText(dataToDisplay);
+                    crossfadeTextView();
+                    jarveeTextView.setText(dataToDisplay);
                 }
             }
         };
         alan_button.registerCallback(webCallback);
+    }
+
+    private void crossfadeWebView() {
+        jarveeWebView.setAlpha(0f);
+        jarveeWebView.setVisibility(View.VISIBLE);
+
+        jarveeWebView.animate()
+                .alpha(1f)
+                .setDuration(shortAnimationDuration)
+                .setListener(null);
+
+        jarveeTextView.animate()
+                .alpha(0f)
+                .setDuration(shortAnimationDuration)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        jarveeTextView.setVisibility(View.GONE);
+                    }
+                });
+    }
+    private void crossfadeTextView() {
+        jarveeTextView.setAlpha(0f);
+        jarveeTextView.setVisibility(View.VISIBLE);
+
+        jarveeTextView.animate()
+                .alpha(1f)
+                .setDuration(shortAnimationDuration)
+                .setListener(null);
+
+        jarveeWebView.animate()
+                .alpha(0f)
+                .setDuration(shortAnimationDuration)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        jarveeWebView.setVisibility(View.GONE);
+                    }
+                });
     }
 }
